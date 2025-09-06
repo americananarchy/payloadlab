@@ -1,0 +1,5 @@
+api-fra04-origin.spectrum.hubspot.com
+api-na1.hubspot.com
+api.hubspot.com
+api-eu1.hubspot.com
+api-na2.hubspot.com

@@ -1,0 +1,5 @@
+https://api.hubspot.com [[33m302[0m] [[36m302 Found[0m] [[35mCloudflare,Cloudflare Bot Management,HSTS[0m]
+https://api-na1.hubspot.com [[33m302[0m] [[36m302 Found[0m] [[35mCloudflare,Cloudflare Bot Management,HSTS[0m]
+https://api-na2.hubspot.com [[33m302[0m] [[36m302 Found[0m] [[35mCloudflare,Cloudflare Bot Management,HSTS[0m]
+https://api-eu1.hubspot.com [[33m302[0m] [[36m302 Found[0m] [[35mCloudflare,Cloudflare Bot Management,HSTS[0m]
+http://api-fra04-origin.spectrum.hubspot.com [[33m301[0m] [[36m301 Moved Permanently[0m] [[35mCloudflare,Cloudflare Bot Management[0m]

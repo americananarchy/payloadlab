@@ -1,10 +1,8 @@
 #!/bin/bash
 INDEX_FILE="sessions/index.html"
 
-# Create sessions folder if it doesn't exist
 mkdir -p sessions
 
-# HTML header
 cat <<HTML > "$INDEX_FILE"
 <!DOCTYPE html>
 <html>
@@ -12,12 +10,17 @@ cat <<HTML > "$INDEX_FILE"
   <meta charset="UTF-8">
   <title>PayloadLab Sessions</title>
   <style>
-    body { font-family: sans-serif; margin: 2rem; background: #0d0d0d; color: #f5f5f5; }
-    h1 { color: #ff4d4d; }
-    a { color: #66ccff; text-decoration: none; }
+    body { font-family: Arial, sans-serif; margin: 2rem; background: #121212; color: #e0e0e0; }
+    h1 { color: #ff4d4d; font-weight: 600; }
+    ul { list-style: none; padding: 0; margin-top: 1.5rem; }
+    li { margin: 0.5rem 0; padding: 0.5rem; border-bottom: 1px solid #333; display: flex; justify-content: space-between; align-items: center; }
+    a { color: #66b2ff; text-decoration: none; }
     a:hover { text-decoration: underline; }
-    ul { list-style: none; padding: 0; }
-    li { margin: 0.5rem 0; }
+    .date { color: #999; font-size: 0.9rem; margin-left: 0.5rem; }
+    .status { font-size: 0.8rem; padding: 0.2rem 0.5rem; border-radius: 4px; text-transform: uppercase; }
+    .open { background-color: #333; color: #ffcc00; }
+    .reported { background-color: #333; color: #66b2ff; }
+    .resolved { background-color: #333; color: #66ff66; }
   </style>
 </head>
 <body>
@@ -25,16 +28,13 @@ cat <<HTML > "$INDEX_FILE"
   <ul>
 HTML
 
-# Read sessions.log and add links
 if [ -f sessions.log ]; then
-  tac sessions.log | while read -r line; do
-    DATE=\$(echo "\$line" | cut -d' ' -f1)
-    URL=\$(echo "\$line" | cut -d' ' -f3)
-    echo "    <li><a href='\$URL' target='_blank'>Session \$DATE</a></li>" >> "$INDEX_FILE"
+  tac sessions.log | while IFS=" - " read -r DATE URL STATUS; do
+    STATUS_CLASS=$(echo "$STATUS" | tr '[:upper:]' '[:lower:]')
+    echo "    <li><span><a href='$URL' target='_blank'>Session</a><span class='date'>$DATE</span></span><span class='status $STATUS_CLASS'>$STATUS</span></li>" >> "$INDEX_FILE"
   done
 fi
 
-# HTML footer
 cat <<HTML >> "$INDEX_FILE"
   </ul>
 </body>
