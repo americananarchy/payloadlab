@@ -1,0 +1,15 @@
+#!/bin/bash
+TARGET="README.md"
+> "$TARGET"
+
+while read -r line; do
+  if [[ -n "$line" ]]; then
+    echo "### Payload Variant" >> "$TARGET"
+    echo '```html' >> "$TARGET"
+    echo "$line" >> "$TARGET"
+    echo '```' >> "$TARGET"
+    echo "" >> "$TARGET"
+  fi
+done < poly_variants.txt
+
+echo "🔥 Payloads injected into README.md"
